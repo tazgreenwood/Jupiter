@@ -23,6 +23,7 @@ public class JupiterDemo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //draws login page
     public void initLogin(){
         //initialize positioning object
         GridBagConstraints c = new GridBagConstraints();
@@ -50,6 +51,24 @@ public class JupiterDemo extends javax.swing.JFrame {
         pack();
     }
 
+    //draws main menu page
+    public void initMainMenu(){
+        //client search bar
+        //client search results field
+        //teller functions button
+    }
+    
+    //draw teller funtions screen
+    public void initTellerFunctions(){
+        
+    }
+    
+    //clear all objects from the screen
+    public void clearScreen(){
+        
+    }
+    
+    //don't touch
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
