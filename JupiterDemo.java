@@ -8,6 +8,7 @@ public class JupiterDemo extends javax.swing.JFrame {
     public JupiterDemo() {
         initComponents();
         initLogin();
+        initMainMenu();
     }
 
     //Makes Window
@@ -53,9 +54,64 @@ public class JupiterDemo extends javax.swing.JFrame {
 
     //draws main menu page
     public void initMainMenu(){
-        //client search bar
-        //client search results field
-        //teller functions button
+        //Client Search bar & button
+        cSearch = new javax.swing.JTextField();
+        cSearch.setText("Client Search");
+        cSearch.addActionListener(new java.awt.event.ActionListener() {
+           public void actionPerformed(java.awt.event.ActionEvent evt) {
+               cSearchActionPerformed(evt);
+           }
+        });
+        searchButton = new javax.swing.JButton();
+        searchButton.setText("Search");
+        
+
+        //Teller Options Button
+        telButton = new javax.swing.JButton();
+        telButton.setText("Teller Options");
+        
+        
+        //Search Results Field
+        jScrollPane1 = new javax.swing.JScrollPane();
+        searchResults = new javax.swing.JTextArea();
+        searchResults.setColumns(20);
+        searchResults.setRows(5);
+        searchResults.setText("Search Results");
+        jScrollPane1.setViewportView(searchResults);
+        //Set and initilize main menu jframe 
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(telButton, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                            .addComponent(cSearch))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 651, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(telButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        pack();
+    }// </editor-fold> 
     }
     
     //draw teller funtions screen
@@ -95,5 +151,12 @@ public class JupiterDemo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+
+    // Variables for Init Main Menu 
+    private javax.swing.JTextField cSearch;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton searchButton;
+    private javax.swing.JTextArea searchResults;
+    private javax.swing.JButton telButton;
     // End of variables declaration//GEN-END:variables
 }
