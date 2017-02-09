@@ -1,11 +1,21 @@
-# Jupiter
-A desktop application allowing bank employees to access client information and perform daily banking functions (e.g. checking balances, making deposits or withdrawals). This application will allow users to make deposits, withdrawals, transfers etc, and be easy to use so new employees can spend less time in training.
+Jupiter Internal Banking Software Documentation
 
-## Basic Features
-1. Bank Employees Should be able to log on with a username and password
-2. Clients can be looked up using account number, social security, or name
-3. A client’s screen should show their accounts, loans, and personal information
-4. An account’s screen should show recent transactions, the balance, and employees should be able to make deposits, transfers, and withdrawals
-5. A loan screen (similar to an account screen) should show recent payments/draws, the balance, and the next payment due. The employee should be able to make payments on the loan.
-6. The Employee should be able to open new accounts using a name, social security number, and ID (passport or driver’s license number) along with other personal information.
-7. An employee should be able to cash other bank’s checks against an internal account, or cash a check drawn on the bank by transferring funds out immediately.
+Jupiter is designed to be a user-friendly desktop program used to view and manipulate client and account information. It handles all basic banking functions such as deposits, withdrawals, transfers, and cashing of checks. This is software that is to be run internally, it is not intended for a given bank’s client use.
+
+When the program begins, the user is prompted to sign in with a banker username and password, or if it’s the first time, he/she can create a new banking account.
+
+The main screen after signing in is the “Client Search” screen this screen allows a banker to look up a client using their name, account number, or social security number. A Client can then be selected to move onto their “Client Profile” screen.
+
+The “Client Profile” screen allows the banker to view this client’s personal information, as well as the accounts the client has with the bank. The client information can be edited here, or an account can be selected to move to the “Account Profile” screen.
+
+The “Account Profile” Screen allows the banker to view all important information about a bank account. This information includes account balance, type of account, recent transactions, etc. The account profile is also where cashing checks, deposits, withdrawals, and transfers can be completed.
+
+At the top right of any of these screens is a dropdown menu that has links to various screens. These are: Balance Drawer, Reverse Transaction, change password, client search, and sign out.
+
+The “Balance Drawer” Screen keeps track of how much money a banker should have in his drawer based on how much cash has come in or out. A banker can enter into various fields the amount of each denomination he has, then Jupiter displays if they are over, under, or balanced. 
+
+The “Reverse Transaction” screen simply shows a list of all the transactions that a banker has made. The banker can go in and reverse transactions that were made earlier.
+
+The “change password” screen allows a banker to change his login password. 
+
+The “sign out” button takes the banker back to the login screen.
