@@ -4,9 +4,11 @@ Jupiter is designed to be a user-friendly desktop program used to view and manip
 
 When the program begins, the user is prompted to sign in with a banker username and password, or if it’s the first time, he/she can create a new banking account.
 
-The main screen after signing in is the “Client Search” screen this screen allows a banker to look up a client using their name, account number, or social security number. A Client can then be selected to move onto their “Client Profile” screen.
+The main screen after signing in is the “Client Search” screen this screen allows a banker to look up a client using their name, account number, or social security number. A Client can then be selected to move onto their “Client Profile” screen. From Here a banker can also navigate to the "Create Client" screen.
 
-The “Client Profile” screen allows the banker to view this client’s personal information, as well as the accounts the client has with the bank. The client information can be edited here, or an account can be selected to move to the “Account Profile” screen.
+The "Create Client" Screen allows the banker to create a new client by entering in their necessary information.
+
+The “Client Profile” screen allows the banker to view this client’s personal information, as well as the accounts the client has with the bank. The client information can be edited here, or an account can be selected to move to the “Account Profile” screen. An existing account can be added under this client's ownership. This screen also allows the banker to navigate to the "create new account" screen.
 
 The “Account Profile” Screen allows the banker to view all important information about a bank account. This information includes account balance, type of account, recent transactions, etc. The account profile is also where cashing checks, deposits, withdrawals, and transfers can be completed.
 
