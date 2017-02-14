@@ -21,3 +21,10 @@ The “Reverse Transaction” screen simply shows a list of all the transactions
 The “change password” screen allows a banker to change his login password. 
 
 The “sign out” button takes the banker back to the login screen.
+
+
+INSTALATION INSTRUCTIONS
+
+Download and install Java: https://java.com/en/download/
+Make sure you are connected to the internet so that you have access to the database.
+Run Jupiter.jar, no installation required.
