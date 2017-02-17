@@ -28,27 +28,73 @@ public class JupiterDemo extends javax.swing.JFrame {
 
     //draws login page
     public void initLogin(){
+        
         //initialize positioning object
         GridBagConstraints c = new GridBagConstraints();
         
-        //create Username Field
-        c.gridx = 0;
+        //create inner panel
+        JPanel innerPanel = new JPanel(new GridBagLayout());
+        innerPanel.setPreferredSize(new Dimension(650,400));
+        innerPanel.setBackground(new Color(125,40,37));
+        innerPanel.setBorder(BorderFactory.createLineBorder(new Color(126,79,36)));
+        getContentPane().add(innerPanel, c);
+        
+        // Add Jupiter Logo
+        c.weightx = 5;
+        c.weighty = 5;
+        c.anchor = GridBagConstraints.FIRST_LINE_START;
+        JLabel logoLabel = new JLabel(new ImageIcon(getClass().getResource("logo.png")));
+        logoLabel.setSize(new Dimension(100, 100));
+        innerPanel.add(logoLabel, c);
+        
+        // Create page title
+        c.anchor = GridBagConstraints.CENTER;
+        c.gridx = 1;
         c.gridy = 0;
+        JLabel title = new JLabel("Login");
+        title.setFont(new Font("", Font.PLAIN,40));
+        innerPanel.add(title, c);
+        
+        //create Username Field
+        c.gridx = 1;
+        c.gridy = 1;
         JTextField username = new JTextField("Username");
-        username.setPreferredSize(new Dimension(stdTextBoxWidth, stdTextBoxHeight));
-        getContentPane().add(username, c);
+        username.setBackground(new Color(173,188,167));
+        username.setFont(new Font("", Font.PLAIN,24));
+        username.setPreferredSize(new Dimension(300, 50));
+        innerPanel.add(username, c);
         
         //Create Password Field
-        c.gridy = 1;
-        JPasswordField passField =  new JPasswordField();
-        passField.setPreferredSize(new Dimension(stdTextBoxWidth, stdTextBoxHeight));
-        getContentPane().add(passField, c);
-       
-        //Add new employee button
+        c.gridx = 1;
         c.gridy = 2;
-        JButton loginButton = new JButton("Add New Employee");
-        loginButton.setPreferredSize(new Dimension(stdTextBoxWidth, stdTextBoxHeight));
-        getContentPane().add(loginButton, c);
+        JPasswordField passField =  new JPasswordField();
+        passField.setBackground(new Color(173,188,167));
+        passField.setFont(new Font("", Font.PLAIN,24));
+        passField.setPreferredSize(new Dimension(300, 50));
+        innerPanel.add(passField, c);
+       
+        //Add login button
+        c.gridx = 0;
+        c.gridy = 3;
+        JButton loginButton = new JButton("Login");
+        loginButton.setBackground(new Color(24,74,76));
+        loginButton.setFont(new Font("", Font.PLAIN,24));
+        loginButton.setForeground(new Color(169,132,99));
+        loginButton.setPreferredSize(new Dimension(150, 50));
+        innerPanel.add(loginButton, c);
+        
+        //Add new employee button
+        c.gridx = 2;
+        c.gridy = 3;
+        JButton newUserButton = new JButton("New User");
+        newUserButton.setBackground(new Color(24,74,76));
+        newUserButton.setFont(new Font("", Font.PLAIN,24));
+        newUserButton.setForeground(new Color(169,132,99));
+        newUserButton.setPreferredSize(new Dimension(150, 50));
+        innerPanel.add(newUserButton, c);
+        
+        // Set Background Color
+        getContentPane().setBackground(new Color(24,74,76));
         
         //draw everything
         pack();
