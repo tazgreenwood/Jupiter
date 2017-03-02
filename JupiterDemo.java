@@ -9,36 +9,174 @@ public class JupiterDemo extends javax.swing.JFrame {
     public int innerMargins = 5;
 
     public JupiterDemo() {
-        initComponents();
-        initLogin();
+        //initComponents();
+        // initLogin();
+        initChangePassword();
     }
 
     //Makes Window
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
+
+        jPanel2 = new javax.swing.JPanel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(750, 500));
-        setSize(new java.awt.Dimension(500, 500));
+        setBackground(new java.awt.Color(24, 74, 76));
+        setBounds(new java.awt.Rectangle(0, 22, 800, 550));
+        setMinimumSize(new java.awt.Dimension(800, 550));
+        setPreferredSize(new java.awt.Dimension(800, 550));
+        setSize(new java.awt.Dimension(800, 550));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
+        jPanel2.setBackground(new java.awt.Color(125, 40, 37));
+        jPanel2.setPreferredSize(new java.awt.Dimension(250, 50));
+
+        jComboBox1.setBackground(new java.awt.Color(125, 40, 37));
+        jComboBox1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        jComboBox1.setForeground(new java.awt.Color(169, 132, 99));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Teller Options", "Balance Drawer", "Reverse Transaction", "Change Password", "Sign Out" }));
+        jComboBox1.setMinimumSize(null);
+        jComboBox1.setOpaque(true);
+        jComboBox1.setPreferredSize(null);
+        jComboBox1.setSize(new java.awt.Dimension(288, 50));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jComboBox1, 0, 220, Short.MAX_VALUE)
+                .addGap(15, 15, 15))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jComboBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, -8, 41);
+        getContentPane().add(jPanel2, gridBagConstraints);
+
+        jPanel1.setBackground(new java.awt.Color(125, 40, 37));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(126, 79, 36), 2));
+        jPanel1.setPreferredSize(new java.awt.Dimension(700, 500));
+
+        JLabel logoLabel = new JLabel(new ImageIcon(getClass().getResource("logo.png")));
+        jLabel1.setText("LOGO");
+
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        jLabel2.setText("Change Password");
+
+        jTextField1.setBackground(new java.awt.Color(173, 188, 167));
+        jTextField1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jTextField1.setText("Current Password");
+        jTextField1.setPreferredSize(new java.awt.Dimension(200, 40));
+        jTextField1.setRequestFocusEnabled(false);
+        jTextField1.setSize(new java.awt.Dimension(200, 40));
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        jTextField2.setBackground(new java.awt.Color(173, 188, 167));
+        jTextField2.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jTextField2.setText("New Password");
+
+        jTextField3.setBackground(new java.awt.Color(173, 188, 167));
+        jTextField3.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jTextField3.setText("Verify New Password");
+
+        jButton1.setBackground(new java.awt.Color(24, 74, 76));
+        jButton1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jButton1.setLabel("Apply Changes");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(69, 69, 69)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(118, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(jLabel2)))
+                .addGap(18, 18, 18)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(56, Short.MAX_VALUE))
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = -98;
+        gridBagConstraints.ipady = -73;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 41, 0, 41);
+        getContentPane().add(jPanel1, gridBagConstraints);
+
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
 
     //draws login page
     public void initLogin(){
-        
+
         //initialize positioning object
         GridBagConstraints c = new GridBagConstraints();
-        
+
         //create inner panel
         JPanel innerPanel = new JPanel(new GridBagLayout());
         innerPanel.setPreferredSize(new Dimension(650,400));
         innerPanel.setBackground(new Color(125,40,37));
         innerPanel.setBorder(BorderFactory.createLineBorder(new Color(126,79,36)));
         getContentPane().add(innerPanel, c);
-        
+
         // Add Jupiter Logo
         c.weightx = 5;
         c.weighty = 5;
@@ -46,7 +184,7 @@ public class JupiterDemo extends javax.swing.JFrame {
         JLabel logoLabel = new JLabel(new ImageIcon(getClass().getResource("logo.png")));
         logoLabel.setSize(new Dimension(100, 100));
         innerPanel.add(logoLabel, c);
-        
+
         // Create page title
         c.anchor = GridBagConstraints.CENTER;
         c.gridx = 1;
@@ -54,7 +192,7 @@ public class JupiterDemo extends javax.swing.JFrame {
         JLabel title = new JLabel("Login");
         title.setFont(new Font("", Font.PLAIN,40));
         innerPanel.add(title, c);
-        
+
         //create Username Field
         c.gridx = 1;
         c.gridy = 1;
@@ -63,7 +201,7 @@ public class JupiterDemo extends javax.swing.JFrame {
         username.setFont(new Font("", Font.PLAIN,24));
         username.setPreferredSize(new Dimension(300, 50));
         innerPanel.add(username, c);
-        
+
         //Create Password Field
         c.gridx = 1;
         c.gridy = 2;
@@ -72,7 +210,7 @@ public class JupiterDemo extends javax.swing.JFrame {
         passField.setFont(new Font("", Font.PLAIN,24));
         passField.setPreferredSize(new Dimension(300, 50));
         innerPanel.add(passField, c);
-       
+
         //Add login button
         c.gridx = 0;
         c.gridy = 3;
@@ -82,7 +220,7 @@ public class JupiterDemo extends javax.swing.JFrame {
         loginButton.setForeground(new Color(169,132,99));
         loginButton.setPreferredSize(new Dimension(150, 50));
         innerPanel.add(loginButton, c);
-        
+
         //Add new employee button
         c.gridx = 2;
         c.gridy = 3;
@@ -92,24 +230,172 @@ public class JupiterDemo extends javax.swing.JFrame {
         newUserButton.setForeground(new Color(169,132,99));
         newUserButton.setPreferredSize(new Dimension(150, 50));
         innerPanel.add(newUserButton, c);
-        
+
         // Set Background Color
         getContentPane().setBackground(new Color(24,74,76));
-        
+
+        //draw everything
+        pack();
+    }
+
+        //draw change password screen
+    public void initChangePassword(){
+        java.awt.GridBagConstraints gridBagConstraints;
+
+        jPanel2 = new javax.swing.JPanel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(24, 74, 76));
+        setBounds(new java.awt.Rectangle(0, 22, 800, 550));
+        setMinimumSize(new java.awt.Dimension(800, 550));
+        setPreferredSize(new java.awt.Dimension(800, 550));
+        setSize(new java.awt.Dimension(800, 550));
+        getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        jPanel2.setBackground(new java.awt.Color(125, 40, 37));
+        jPanel2.setPreferredSize(new java.awt.Dimension(250, 50));
+
+        jComboBox1.setBackground(new java.awt.Color(125, 40, 37));
+        jComboBox1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        jComboBox1.setForeground(new java.awt.Color(169,132,99));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Teller Options", "Balance Drawer", "Reverse Transaction", "Change Password", "Sign Out" }));
+        jComboBox1.setMinimumSize(null);
+        jComboBox1.setOpaque(true);
+        jComboBox1.setPreferredSize(null);
+        jComboBox1.setSize(new java.awt.Dimension(288, 50));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jComboBox1, 0, 220, Short.MAX_VALUE)
+                .addGap(15, 15, 15))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jComboBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, -8, 41);
+        getContentPane().add(jPanel2, gridBagConstraints);
+
+        jPanel1.setBackground(new java.awt.Color(125, 40, 37));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(126, 79, 36), 2));
+        jPanel1.setPreferredSize(new java.awt.Dimension(700, 500));
+
+        jLabel1 = new JLabel(new ImageIcon(getClass().getResource("logo.png")));
+
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        jLabel2.setText("Change Password");
+
+        jTextField1.setBackground(new java.awt.Color(173, 188, 167));
+        jTextField1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jTextField1.setText("Current Password");
+        jTextField1.setPreferredSize(new java.awt.Dimension(200, 40));
+        jTextField1.setRequestFocusEnabled(false);
+        jTextField1.setSize(new java.awt.Dimension(200, 40));
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        jTextField2.setBackground(new java.awt.Color(173, 188, 167));
+        jTextField2.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jTextField2.setText("New Password");
+
+        jTextField3.setBackground(new java.awt.Color(173, 188, 167));
+        jTextField3.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jTextField3.setText("Verify New Password");
+
+        jButton1.setBackground(new java.awt.Color(24, 74, 76));
+        jButton1.setForeground(new java.awt.Color(169,132,99));
+        jButton1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jButton1.setLabel("Apply Changes");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(69, 69, 69)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(118, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(jLabel2)))
+                .addGap(18, 18, 18)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(56, Short.MAX_VALUE))
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = -98;
+        gridBagConstraints.ipady = -73;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 41, 0, 41);
+        getContentPane().add(jPanel1, gridBagConstraints);
+
+        // Set Background Color
+        getContentPane().setBackground(new Color(24,74,76));
+
         //draw everything
         pack();
     }
 
     //draws main menu page
     public void initMainMenu(){
-    
+
     //variables
     JTextField cSearch = new JTextField();
     JScrollPane jScrollPane1 = new JScrollPane();
     JButton searchButton = new JButton();
     JTextArea searchResults = new JTextArea();
     JButton telButton = new JButton();
-    
+
         //Client Search bar
         cSearch = new JTextField();
         cSearch.setText("Client Search");
@@ -118,17 +404,17 @@ public class JupiterDemo extends javax.swing.JFrame {
                //when butttn is pressed
            }
         });
-        
+
         //Search Button
         searchButton = new JButton();
         searchButton.setText("Search");
-        
+
 
         //Teller Options Button
         telButton = new javax.swing.JButton();
         telButton.setText("Teller Options");
-        
-        
+
+
         //Search Results Field
         jScrollPane1 = new javax.swing.JScrollPane();
         searchResults = new javax.swing.JTextArea();
@@ -136,8 +422,8 @@ public class JupiterDemo extends javax.swing.JFrame {
         searchResults.setRows(5);
         searchResults.setText("Search Results");
         jScrollPane1.setViewportView(searchResults);
-        
-        //Set and initilize main menu jframe 
+
+        //Set and initilize main menu jframe
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -171,13 +457,13 @@ public class JupiterDemo extends javax.swing.JFrame {
 
         pack();
     }
-    
+
     //draw a client's screen
     public void initClientScreen(){
         //show client's personal information
-        //show clients account'sand loans basic info 
+        //show clients account'sand loans basic info
     }
-    
+
     //draw an account's screen
     public void initAccountScreen(){
         //show balance
@@ -186,7 +472,7 @@ public class JupiterDemo extends javax.swing.JFrame {
         //withdrawal button
         //transfer button
     }
-    
+
     //draw a loan/card screen
     public void initLoanScreen(){
         //draw balance
@@ -194,20 +480,20 @@ public class JupiterDemo extends javax.swing.JFrame {
         //draw payment button
         //loan draw button (if it is a rotating loan)
     }
-    
+
     //draw teller funtions screen
     public void initTellerFunctions(){
     //Change Employee Password Button
-    //Change Client Information Button 
+    //Change Client Information Button
     //Reverse a Transaction Button
     //Balance Drawer Button
     }
-    
+
     //clear all objects from the screen
     public void clearScreen(){
-        
+
     }
-    
+
     //Don't Touch
     public static void main(String args[]) {
         try {
@@ -234,6 +520,15 @@ public class JupiterDemo extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    // End of variables declaration//GEN-END:variables
+    // Variables declaration - do not modify
+    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    // End of variables declaration
 }
