@@ -9,9 +9,10 @@ public class JupiterDemo extends javax.swing.JFrame {
     public int innerMargins = 5;
 
     public JupiterDemo() {
-        //initComponents();
+        // initComponents();
         // initLogin();
-        initChangePassword();
+        // initChangePassword();
+        initNewBanker();
     }
 
     //Makes Window
@@ -25,10 +26,13 @@ public class JupiterDemo extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jTextField4 = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(24, 74, 76));
@@ -42,12 +46,10 @@ public class JupiterDemo extends javax.swing.JFrame {
         jPanel2.setPreferredSize(new java.awt.Dimension(250, 50));
 
         jComboBox1.setBackground(new java.awt.Color(125, 40, 37));
-        jComboBox1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        jComboBox1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jComboBox1.setForeground(new java.awt.Color(169, 132, 99));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Teller Options", "Balance Drawer", "Reverse Transaction", "Change Password", "Sign Out" }));
-        jComboBox1.setMinimumSize(null);
         jComboBox1.setOpaque(true);
-        jComboBox1.setPreferredSize(null);
         jComboBox1.setSize(new java.awt.Dimension(288, 50));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -81,14 +83,18 @@ public class JupiterDemo extends javax.swing.JFrame {
         jLabel1.setText("LOGO");
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
-        jLabel2.setText("Change Password");
+        jLabel2.setText("Add New Banker");
+
+        jButton1.setBackground(new java.awt.Color(24, 74, 76));
+        jButton1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jButton1.setText("Save");
+
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
+        jLabel3.setText("Banker Info:");
 
         jTextField1.setBackground(new java.awt.Color(173, 188, 167));
-        jTextField1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jTextField1.setText("Current Password");
-        jTextField1.setPreferredSize(new java.awt.Dimension(200, 40));
-        jTextField1.setRequestFocusEnabled(false);
-        jTextField1.setSize(new java.awt.Dimension(200, 40));
+        jTextField1.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
+        jTextField1.setText("First Name");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -96,56 +102,81 @@ public class JupiterDemo extends javax.swing.JFrame {
         });
 
         jTextField2.setBackground(new java.awt.Color(173, 188, 167));
-        jTextField2.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jTextField2.setText("New Password");
+        jTextField2.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
+        jTextField2.setText("Last Name");
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
 
         jTextField3.setBackground(new java.awt.Color(173, 188, 167));
         jTextField3.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jTextField3.setText("Verify New Password");
+        jTextField3.setText("User Name");
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
 
-        jButton1.setBackground(new java.awt.Color(24, 74, 76));
-        jButton1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jButton1.setLabel("Apply Changes");
+        jTextField4.setBackground(new java.awt.Color(173, 188, 167));
+        jTextField4.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jTextField4.setText("New Password");
+
+        jTextField5.setBackground(new java.awt.Color(173, 188, 167));
+        jTextField5.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jTextField5.setText("Verify New Password");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(123, 123, 123))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(69, 69, 69)
-                        .addComponent(jLabel2))
+                        .addGap(49, 49, 49)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(118, Short.MAX_VALUE))
+                        .addGap(127, 127, 127)
+                        .addComponent(jLabel3)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(39, 39, 39)
-                        .addComponent(jLabel2)))
-                .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
+                .addGap(18, 18, 18)
+                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -160,7 +191,15 @@ public class JupiterDemo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
+
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
 
@@ -264,7 +303,7 @@ public class JupiterDemo extends javax.swing.JFrame {
         jPanel2.setPreferredSize(new java.awt.Dimension(250, 50));
 
         jComboBox1.setBackground(new java.awt.Color(125, 40, 37));
-        jComboBox1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        jComboBox1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jComboBox1.setForeground(new java.awt.Color(169,132,99));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Teller Options", "Balance Drawer", "Reverse Transaction", "Change Password", "Sign Out" }));
         jComboBox1.setMinimumSize(null);
@@ -308,13 +347,6 @@ public class JupiterDemo extends javax.swing.JFrame {
         jTextField1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jTextField1.setText("Current Password");
         jTextField1.setPreferredSize(new java.awt.Dimension(200, 40));
-        jTextField1.setRequestFocusEnabled(false);
-        jTextField1.setSize(new java.awt.Dimension(200, 40));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
 
         jTextField2.setBackground(new java.awt.Color(173, 188, 167));
         jTextField2.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
@@ -383,6 +415,182 @@ public class JupiterDemo extends javax.swing.JFrame {
         getContentPane().setBackground(new Color(24,74,76));
 
         //draw everything
+        pack();
+    }
+
+    public void initNewBanker() {
+        java.awt.GridBagConstraints gridBagConstraints;
+
+        jPanel2 = new javax.swing.JPanel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(24, 74, 76));
+        setBounds(new java.awt.Rectangle(0, 22, 800, 550));
+        setMinimumSize(new java.awt.Dimension(800, 550));
+        setPreferredSize(new java.awt.Dimension(800, 550));
+        setSize(new java.awt.Dimension(800, 550));
+        getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        jPanel2.setBackground(new java.awt.Color(125, 40, 37));
+        jPanel2.setPreferredSize(new java.awt.Dimension(250, 50));
+
+        jComboBox1.setBackground(new java.awt.Color(125, 40, 37));
+        jComboBox1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jComboBox1.setForeground(new java.awt.Color(169, 132, 99));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Teller Options", "Balance Drawer", "Reverse Transaction", "Change Password", "Sign Out" }));
+        jComboBox1.setOpaque(true);
+        jComboBox1.setSize(new java.awt.Dimension(288, 50));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jComboBox1, 0, 220, Short.MAX_VALUE)
+                .addGap(15, 15, 15))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jComboBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, -8, 41);
+        getContentPane().add(jPanel2, gridBagConstraints);
+
+        jPanel1.setBackground(new java.awt.Color(125, 40, 37));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(126, 79, 36), 2));
+        jPanel1.setPreferredSize(new java.awt.Dimension(700, 500));
+
+        jLabel1 = new JLabel(new ImageIcon(getClass().getResource("logo2.png")));
+
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        jLabel2.setText("Add New Banker");
+
+        jButton1.setBackground(new java.awt.Color(24, 74, 76));
+        jButton1.setForeground(new java.awt.Color(169,132,99));
+        jButton1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jButton1.setText("Save");
+
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
+        jLabel3.setText("Banker Info:");
+
+        jTextField1.setBackground(new java.awt.Color(173, 188, 167));
+        jTextField1.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
+        jTextField1.setText("First Name");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        jTextField2.setBackground(new java.awt.Color(173, 188, 167));
+        jTextField2.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
+        jTextField2.setText("Last Name");
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+
+        jTextField3.setBackground(new java.awt.Color(173, 188, 167));
+        jTextField3.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jTextField3.setText("User Name");
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
+
+        jTextField4.setBackground(new java.awt.Color(173, 188, 167));
+        jTextField4.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jTextField4.setText("New Password");
+
+        jTextField5.setBackground(new java.awt.Color(173, 188, 167));
+        jTextField5.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jTextField5.setText("Verify New Password");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(123, 123, 123))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(127, 127, 127)
+                        .addComponent(jLabel3)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(jLabel2))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(55, Short.MAX_VALUE))
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = -98;
+        gridBagConstraints.ipady = -73;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 41, 0, 41);
+        getContentPane().add(jPanel1, gridBagConstraints);
+
+        // Set Background Color
+        getContentPane().setBackground(new Color(24,74,76));
+
         pack();
     }
 
@@ -525,10 +733,13 @@ public class JupiterDemo extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
     // End of variables declaration
 }
