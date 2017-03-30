@@ -3,7 +3,8 @@ import java.awt.*;
 import Database.*;
 import TextField.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class JupiterDemo extends javax.swing.JFrame {
@@ -14,13 +15,13 @@ public class JupiterDemo extends javax.swing.JFrame {
     public int innerMargins = 5;
     public Database DB;
     private int cBanker_ID = -1;
+    public int cAccountNum = 123456789;
 
     public JupiterDemo() {
         initComponents();
         DB = new Database();
-        DB.showTable("employees");
         cBanker_ID = 1;
-        initAddClient();
+        initAccountProfile();
     }
 
     //Makes Window
@@ -74,7 +75,8 @@ public class JupiterDemo extends javax.swing.JFrame {
         clearScreen();
 
         //initialize positioning object
-        GridBagConstraints c = new GridBagConstraints();
+        java.awt.GridBagConstraints c = new GridBagConstraints();
+        getContentPane().setLayout(new java.awt.GridBagLayout());
 
         //create inner panel
         JPanel innerPanel = new JPanel(new GridBagLayout());
@@ -139,7 +141,7 @@ public class JupiterDemo extends javax.swing.JFrame {
 
         //Add new employee button
         c.gridx = 2;
-        c.gridy = 3;
+       c.gridy = 3;
         JButton newUserButton = new JButton("New User");
         newUserButton.setBackground(new Color(24,74,76));
         newUserButton.setFont(new Font("", Font.PLAIN,24));
@@ -209,25 +211,25 @@ public class JupiterDemo extends javax.swing.JFrame {
         javax.swing.JComboBox<String> DDMenu;
         javax.swing.JPanel FGPanel;
         javax.swing.JTextField NameSearch;
-        javax.swing.JScrollPane SResult;
         javax.swing.JTextField SSNSearch;
         javax.swing.JLabel Symbol;
         javax.swing.JLabel jLabel1;
         javax.swing.JPanel jPanel1;
+        javax.swing.JScrollPane jScrollPane1;
+        javax.swing.JTable jTable1;
         javax.swing.JButton searchButton;
-        javax.swing.JTextArea searchResults;
         BGPanel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         DDMenu = makeComboBox();
         FGPanel = new javax.swing.JPanel();
         searchButton = new javax.swing.JButton();
         NameSearch = new javax.swing.JTextField();
-        SResult = new javax.swing.JScrollPane();
-        searchResults = new javax.swing.JTextArea();
         SSNSearch = new javax.swing.JTextField();
         AccountSearch = new javax.swing.JTextField();
         Symbol = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -242,9 +244,9 @@ public class JupiterDemo extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(125, 40, 37));
 
-        //DDMenu.setBackground(new java.awt.Color(125, 40, 37));
-        //DDMenu.setForeground(new java.awt.Color(169, 132, 99));
-        //DDMenu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Teller Options", "Balance Till", "Reverse Transaction", "Account Settings", "Home", "Logout" }));
+        DDMenu.setBackground(new java.awt.Color(125, 40, 37));
+        DDMenu.setForeground(new java.awt.Color(169, 132, 99));
+        DDMenu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Teller Options", "Balance Till", "Reverse Transaction", "Account Settings", "Home", "Logout" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -273,10 +275,11 @@ public class JupiterDemo extends javax.swing.JFrame {
         FGPanel.setVerifyInputWhenFocusTarget(false);
 
         searchButton.setBackground(new java.awt.Color(24, 74, 76));
-        searchButton.setForeground(new java.awt.Color(173, 188, 167));
+        searchButton.setForeground(new java.awt.Color(24, 74, 76));
         searchButton.setText("Search");
-        searchButton.addActionListener(new java.awt.event.ActionListener(){
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                //NameSearchActionPerformed(evt);
                 initClientProfile();
             }
         });
@@ -288,13 +291,6 @@ public class JupiterDemo extends javax.swing.JFrame {
                 //NameSearchActionPerformed(evt);
             }
         });
-
-        searchResults.setBackground(new java.awt.Color(173, 188, 167));
-        searchResults.setColumns(20);
-        searchResults.setRows(5);
-        searchResults.setText("Search Results");
-        searchResults.setPreferredSize(new java.awt.Dimension(250, 50));
-        SResult.setViewportView(searchResults);
 
         SSNSearch.setBackground(new java.awt.Color(173, 188, 167));
         SSNSearch.setText("SSN");
@@ -312,6 +308,37 @@ public class JupiterDemo extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("Account Search");
 
+        jTable1.setBackground(new java.awt.Color(173, 188, 167));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "F Name", "L Name", "Account #"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Object.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
         javax.swing.GroupLayout FGPanelLayout = new javax.swing.GroupLayout(FGPanel);
         FGPanel.setLayout(FGPanelLayout);
         FGPanelLayout.setHorizontalGroup(
@@ -326,9 +353,9 @@ public class JupiterDemo extends javax.swing.JFrame {
                             .addComponent(searchButton, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
                             .addComponent(AccountSearch))
                         .addGap(2, 2, 2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(SResult, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(FGPanelLayout.createSequentialGroup()
                 .addComponent(Symbol)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -352,9 +379,9 @@ public class JupiterDemo extends javax.swing.JFrame {
                         .addComponent(SSNSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(AccountSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(26, 26, 26)
                         .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(SResult, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap(66, Short.MAX_VALUE))
         );
 
@@ -377,13 +404,13 @@ public class JupiterDemo extends javax.swing.JFrame {
 
     //draw a client's screen
     public void initClientProfile(){
-         clearScreen();
+        clearScreen();
         javax.swing.JButton AOwnership;
         javax.swing.JRadioButton ATChecking;
         javax.swing.JRadioButton ATLoan;
         javax.swing.JRadioButton ATSavings;
         javax.swing.JButton Aaccount;
-        javax.swing.JScrollPane Accounts;
+        javax.swing.JTextField OOwnership;
         javax.swing.JTextField City;
         javax.swing.JTextField DoB;
         javax.swing.JButton Eaddress;
@@ -403,10 +430,11 @@ public class JupiterDemo extends javax.swing.JFrame {
         javax.swing.JTextField State;
         javax.swing.JTextField Zip;
         javax.swing.JComboBox<String> jComboBox1;
-        javax.swing.JList<String> jList1;
         javax.swing.JPanel jPanel1;
         javax.swing.JPanel jPanel2;
         javax.swing.JPanel jPanel3;
+        javax.swing.JScrollPane jScrollPane1;
+        javax.swing.JTable jTable1;
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jComboBox1 = makeComboBox();
@@ -427,29 +455,30 @@ public class JupiterDemo extends javax.swing.JFrame {
         Eaddress = new javax.swing.JButton();
         Edob = new javax.swing.JButton();
         Essn = new javax.swing.JButton();
-        Accounts = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
         ATChecking = new javax.swing.JRadioButton();
         ATSavings = new javax.swing.JRadioButton();
         ATLoan = new javax.swing.JRadioButton();
         Aaccount = new javax.swing.JButton();
         OAccount = new javax.swing.JTextField();
+        OOwnership = new javax.swing.JTextField();
         AOwnership = new javax.swing.JButton();
         Mname = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 255));
+        setMaximumSize(new java.awt.Dimension(1200, 800));
         setPreferredSize(new java.awt.Dimension(1200, 800));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(24, 74, 76));
         jPanel1.setForeground(new java.awt.Color(24, 74, 76));
+        jPanel1.setMaximumSize(new java.awt.Dimension(1200, 500));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1200, 800));
         jPanel1.setLayout(null);
 
         jPanel3.setBackground(new java.awt.Color(125, 40, 37));
-
-        //jComboBox1.setBackground(new java.awt.Color(125, 40, 37));
-        //jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -457,7 +486,7 @@ public class JupiterDemo extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jComboBox1, 0, 200, Short.MAX_VALUE)
+                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -465,11 +494,11 @@ public class JupiterDemo extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel3);
-        jPanel3.setBounds(680, 120, 220, 70);
+        jPanel3.setBounds(710, 120, 220, 70);
 
         jPanel2.setBackground(new java.awt.Color(125, 40, 37));
         jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(126, 79, 36), 1, true));
@@ -536,14 +565,6 @@ public class JupiterDemo extends javax.swing.JFrame {
         Essn.setForeground(new java.awt.Color(173, 188, 167));
         Essn.setText("Edit");
 
-        jList1.setBackground(new java.awt.Color(173, 188, 167));
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Accounts" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        Accounts.setViewportView(jList1);
-
         ATChecking.setBackground(new java.awt.Color(125, 40, 37));
         ATChecking.setForeground(new java.awt.Color(173, 188, 167));
         ATChecking.setText("Checking");
@@ -559,11 +580,7 @@ public class JupiterDemo extends javax.swing.JFrame {
         Aaccount.setBackground(new java.awt.Color(24, 74, 76));
         Aaccount.setForeground(new java.awt.Color(173, 188, 167));
         Aaccount.setText("Add Account");
-        Aaccount.addActionListener(new java.awt.event.ActionListener(){
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                initAccountProfile();
-            }
-        });
+
         OAccount.setBackground(new java.awt.Color(173, 188, 167));
         OAccount.setText("Account #");
 
@@ -571,8 +588,53 @@ public class JupiterDemo extends javax.swing.JFrame {
         AOwnership.setForeground(new java.awt.Color(173, 188, 167));
         AOwnership.setText("Add Ownership");
 
+        OOwnership.setBackground(new java.awt.Color(173, 188, 167));
+        OOwnership.setText("Name");
+
         Mname.setBackground(new java.awt.Color(173, 188, 167));
         Mname.setText("MI");
+
+        jTable1.setBackground(new java.awt.Color(173, 188, 167));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Account #", "First", "Last", "Type"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -592,7 +654,7 @@ public class JupiterDemo extends javax.swing.JFrame {
                                 .addComponent(Fname, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Mname)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Lname, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(DoB)
                             .addComponent(City)
@@ -629,7 +691,7 @@ public class JupiterDemo extends javax.swing.JFrame {
                         .addComponent(ATLoan, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                         .addComponent(AOwnership, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(Accounts))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(32, 32, 32))
         );
         jPanel2Layout.setVerticalGroup(
@@ -641,12 +703,11 @@ public class JupiterDemo extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(Accounts, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(ATChecking)
-                            .addComponent(Aaccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(State, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(Aaccount, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Fname, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -664,8 +725,10 @@ public class JupiterDemo extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(City, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Zip, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Zip, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(State, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DoB, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Edob, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -682,7 +745,7 @@ public class JupiterDemo extends javax.swing.JFrame {
         );
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(240, 170, 660, 480);
+        jPanel2.setBounds(270, 170, 660, 480);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -700,7 +763,7 @@ public class JupiterDemo extends javax.swing.JFrame {
 
     //draw an account's screen
     public void initAccountProfile(){
-              clearScreen();
+        clearScreen();
         javax.swing.JPanel BGPanel1;
         javax.swing.JPanel FGPanel4;
         javax.swing.JLabel LabelMinBalance3;
@@ -775,10 +838,6 @@ public class JupiterDemo extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(125, 40, 37));
 
-        //jComboBox5.setBackground(new java.awt.Color(125, 40, 37));
-        //jComboBox5.setForeground(new java.awt.Color(169, 132, 99));
-        //jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Teller Options", "Balance Till", "Reverse Transaction", "Account Settings", "Home", "Logout" }));
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -810,18 +869,37 @@ public class JupiterDemo extends javax.swing.JFrame {
         btnWithdrawal3.setBackground(new java.awt.Color(24, 74, 76));
         btnWithdrawal3.setForeground(new java.awt.Color(173, 188, 167));
         btnWithdrawal3.setText("Withdrawal");
+        ArrayList<JTextField> withdrawField = new ArrayList();
+        withdrawField.add(TextboxWAmount3);
+        btnWithdrawal3.addActionListener(
+                (ActionEvent e) -> {withdrawal(withdrawField);});
 
         btnDeposit3.setBackground(new java.awt.Color(24, 74, 76));
         btnDeposit3.setForeground(new java.awt.Color(173, 188, 167));
+        ArrayList<JTextField> depositFields = new ArrayList();
+        depositFields.add(TextboxDCheck3);
+        depositFields.add(TextboxDCash3);
         btnDeposit3.setText("Deposit");
+        btnDeposit3.addActionListener(
+                (ActionEvent e) -> {deposit(depositFields);});
+
 
         btnCheckCash3.setBackground(new java.awt.Color(24, 74, 76));
         btnCheckCash3.setForeground(new java.awt.Color(173, 188, 167));
         btnCheckCash3.setText("Cash Check");
+        ArrayList<JTextField> cashCheckFields = new ArrayList();
+        cashCheckFields.add(TextboxCCAmount3);
+        btnCheckCash3.addActionListener(
+                (ActionEvent e) -> {cashCheck(cashCheckFields);});
 
         btnTransfer3.setBackground(new java.awt.Color(24, 74, 76));
         btnTransfer3.setForeground(new java.awt.Color(173, 188, 167));
         btnTransfer3.setText("Transfer");
+        ArrayList<JTextField> transferFields = new ArrayList();
+        transferFields.add(TextboxTAccountNum3);
+        transferFields.add(TextboxTAmount3);
+        btnTransfer3.addActionListener(
+                (ActionEvent e) -> {transfer(transferFields);});
 
         TextboxDCash3.setText("Cash Amt");
         TextboxDCash3.setBorder(null);
@@ -831,11 +909,6 @@ public class JupiterDemo extends javax.swing.JFrame {
         TextboxWAmount3.setText("Amount");
         TextboxWAmount3.setBorder(null);
         TextboxWAmount3.setBackground(new java.awt.Color(173, 188, 167));
-        TextboxWAmount3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                //TextboxWAmountActionPerformed(evt);
-            }
-        });
 
         TextboxCCAmount3.setText("Amount");
         TextboxCCAmount3.setBackground(new java.awt.Color(173, 188, 167));
@@ -850,16 +923,33 @@ public class JupiterDemo extends javax.swing.JFrame {
         TextboxTAmount3.setText("Amount");
         TextboxTAmount3.setBackground(new java.awt.Color(173, 188, 167));
 
+        //TRANSACTIONS TEXT BOX
         jTextArea8.setBackground(new java.awt.Color(173, 188, 167));
         jTextArea8.setColumns(20);
         jTextArea8.setRows(5);
+        jTextArea8.setEditable(false);
+        ArrayList<ArrayList<String>> amounts = new ArrayList();
+        ArrayList<ArrayList<String>> dates = new ArrayList();
+        ArrayList<ArrayList<String>> balances = new ArrayList();
+        getTransactions(amounts, dates, balances);
+        //draw all transactions of the account
+        if(amounts.size()>0){
+            for (int i =0;i < amounts.get(0).size();i++){
+            if (Float.valueOf(amounts.get(0).get(i)) >= 0){
+                jTextArea8.append("+");
+            }
+            jTextArea8.append(amounts.get(0).get(i)+"   ");
+            jTextArea8.append(dates.get(0).get(i)+"  ");
+            jTextArea8.append(balances.get(0).get(i)+"\n");
+        }
+        }
         TextboxATransactions3.setViewportView(jTextArea8);
 
         labelAccountInfo3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         labelAccountInfo3.setText("Account Info");
 
         labelAccountOwn3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        labelAccountOwn3.setText("Account Owner");
+        labelAccountOwn3.setText("Account Owners");
 
         labelIntRate3.setText("Intrest Rate");
 
@@ -870,31 +960,52 @@ public class JupiterDemo extends javax.swing.JFrame {
         labelAccountType3.setName(""); // NOI18N
         labelAccountType3.setPreferredSize(new java.awt.Dimension(35, 15));
 
-        labelOverdraftFee3.setText("Overdaft Fee");
+        labelOverdraftFee3.setText("");
 
         LabelMinBalance3.setText("Min. Balance");
 
-        jTextField19.setText("jTextField9");
+        //get account info
+        ArrayList<ArrayList<String>> response = getAccountInfo();
+        String rate = response.get(0).get(0);
+        String type = response.get(1).get(0);
+        String limit = response.get(2).get(0);
+
+        jTextField19.setText(rate);
+        jTextField19.setEditable(false);
         jTextField19.setBackground(new java.awt.Color(173, 188, 167));
 
-        jTextField20.setText("jTextField9");
+        jTextField20.setText(type);
+        jTextField20.setEditable(false);
         jTextField20.setBackground(new java.awt.Color(173, 188, 167));
 
-        jTextField4.setText("jTextField1");
+        jTextField4.setText(limit);
+        jTextField4.setEditable(false);
         jTextField4.setBackground(new java.awt.Color(173, 188, 167));
 
         labelRTransactions3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         labelRTransactions3.setText("Recent Transactions");
 
         labelAcctTitle3.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        labelAcctTitle3.setText("Account (account number) ");
+        labelAcctTitle3.setText("Account "+cAccountNum);
 
+        //deleted
         jTextField18.setText("jTextField9");
+        jTextField18.setVisible(false);
         jTextField18.setBackground(new java.awt.Color(173, 188, 167));
 
+        //OWNERS BOX
         jTextArea9.setBackground(new java.awt.Color(173, 188, 167));
         jTextArea9.setColumns(20);
         jTextArea9.setRows(5);
+        jTextArea9.setEditable(false);
+        ArrayList<ArrayList> fnames = new ArrayList();
+        ArrayList<ArrayList> lnames = new ArrayList();
+        getOwners(fnames, lnames);
+        //draw all owners of the account
+        for (int i =0;i < fnames.size();i++){
+            jTextArea9.append(fnames.get(0).get(i)+" ");
+            jTextArea9.append(lnames.get(0).get(i)+"\n");
+        }
         jScrollPane7.setViewportView(jTextArea9);
 
         javax.swing.GroupLayout FGPanel4Layout = new javax.swing.GroupLayout(FGPanel4);
@@ -948,13 +1059,13 @@ public class JupiterDemo extends javax.swing.JFrame {
                                     .addGroup(FGPanel4Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(FGPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(FGPanel4Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(FGPanel4Layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
+                                        .addGap(12, 12, 12)
                                         .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(FGPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -1056,6 +1167,319 @@ public class JupiterDemo extends javax.swing.JFrame {
         pack();
     }
 
+    public ArrayList getAccountInfo(){
+        ArrayList queries = new ArrayList();
+        String query = "select int_rate from accounts where account_number = "+cAccountNum+";";
+        queries.add(query);
+        query = "select type from accounts where account_number = "+cAccountNum+";";
+        queries.add(query);
+        query = "select overdraft_limit from accounts where account_number = "+cAccountNum+";";
+        queries.add(query);
+        ArrayList<ArrayList<String>> response = DB.getArrays(queries, 1);
+        return response;
+    }
+
+    public void getOwners(ArrayList fnames, ArrayList lnames){
+        String query = "select acc_id from accounts where account_number="+cAccountNum+";";
+        String accountID = DB.getValue(query, 1);
+        query = "select client_id from account_to_client where acc_id="+accountID+";";
+        ArrayList ownerIDs = DB.getArray(query, 1);
+        for(int i = 0;i<ownerIDs.size();i++){
+            ArrayList queries = new ArrayList();
+            query = "Select fname from clients where client_id = '"+ownerIDs.get(i)+"';";
+            queries.add(query);
+            query = "Select lname from clients where client_id = '"+ownerIDs.get(i)+"';";
+            queries.add(query);
+            ArrayList response = DB.getArrays(queries, 1);
+            fnames.add(response.get(0));
+            lnames.add(response.get(1));
+        }
+    }
+
+    public void getTransactions(ArrayList amounts, ArrayList dates, ArrayList balances){
+        ArrayList queries = new ArrayList();
+        String query = "select amount from transactions where account_number="+cAccountNum+" order by date desc, time desc, amount desc limit 20;";
+        queries.add(query);
+        query = "select date from transactions where account_number="+cAccountNum+" order by date desc, time desc, amount desc limit 20;";
+        queries.add(query);
+        query = "select balance from transactions where account_number="+cAccountNum+" order by date desc, time desc, amount desc limit 20;";
+        queries.add(query);
+        ArrayList response = DB.getArrays(queries, 1);
+        if (response.size() > 0){
+            amounts.add(response.get(0));
+            dates.add(response.get(1));
+            balances.add(response.get(2));
+        }
+    }
+
+    public void deposit(ArrayList<JTextField> textFieldsList){
+        if (checkFillTextBoxes(textFieldsList))
+        {
+            //Gets data from text boxes
+            String checkS = textFieldsList.get(0).getText().trim();
+            String cashS = textFieldsList.get(1).getText().trim();
+
+            //make sure they are numbers
+            try {
+                Float check = round(Float.valueOf(checkS),2);
+                Float cash = round(Float.valueOf(cashS),2);
+
+                //no negatives
+                if(cash < 0 || check < 0){
+                    JOptionPane.showMessageDialog(null, "can't have negative value","Error!", JOptionPane.ERROR_MESSAGE);
+                }
+                else{
+                    //round 1
+                    ArrayList queries = new ArrayList();
+                     //get next trans id
+                    String query = "select max(tra_id) from transactions;";
+                    queries.add(query);
+                    query = "select balance from accounts where account_number="+cAccountNum+";";
+                    queries.add(query);
+                    query = "select cash_drawer from employees where emp_id="+cBanker_ID+";";
+                    queries.add(query);
+                    ArrayList<ArrayList<String>> response = DB.getArrays(queries,1);
+
+                    int tra_id = Integer.parseInt(response.get(0).get(0));
+                    tra_id++;
+                    float balance = Float.valueOf(response.get(1).get(0));
+                    balance += (cash+check);
+                    float cash_drawer = Float.valueOf(response.get(1).get(0));
+                    cash_drawer += (check + cash);
+
+                    //round 2
+                    //change balance
+                    ArrayList executes = new ArrayList();
+                    query = "update accounts set balance="+balance+" where account_number="+cAccountNum+";";
+                    executes.add(query);
+
+                    //create new transaction
+                    query = "insert into transactions values("+tra_id+","+cAccountNum+",'deposit',"+(check+cash)+",'"+LocalDateTime.now()+"',"+cBanker_ID+","+balance+","+getTime()+");";
+                    executes.add(query);
+
+                    //update cash drawer amount
+                    query = "update employees set cash_drawer="+cash_drawer+" where emp_id="+cBanker_ID+";";
+                    executes.add(query);
+                    DB.executes(executes);
+
+                    initAccountProfile();
+                }
+            }
+            catch ( Exception e ) {
+                JOptionPane.showMessageDialog(null, e,"Error!", JOptionPane.ERROR_MESSAGE);
+            }
+
+        }
+        else{
+            //if input boxes where not filled
+            JOptionPane.showMessageDialog(null, "Must have cash and check amount","Error!", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void withdrawal(ArrayList<JTextField> textFieldsList){
+        if (checkFillTextBoxes(textFieldsList))
+        {
+            //Gets data from text boxes
+            String amountS = textFieldsList.get(0).getText().trim();
+
+            //make sure they are numbers
+            try {
+                Float amount = round(Float.valueOf(amountS),2);
+
+                //make sure no oevrdraft
+                ArrayList firstQ = new ArrayList();
+                String query = "select balance from accounts where account_number="+cAccountNum+";";
+                firstQ.add(query);
+                query = "select overdraft_limit from accounts where account_number="+cAccountNum+";";
+                firstQ.add(query);
+                ArrayList<ArrayList<String>> firstR = DB.getArrays(firstQ,1);
+                Float balance = Float.valueOf(firstR.get(0).get(0));
+                Float limit = Float.valueOf(firstR.get(1).get(0));
+
+                //no negatives
+                if(amount <= 0){
+                    JOptionPane.showMessageDialog(null, "can't have negative value or 0","Error!", JOptionPane.ERROR_MESSAGE);
+                }else if(balance - amount < (0-limit)){
+                    JOptionPane.showMessageDialog(null, "Withdrawal Exceeds Overdraft Limit","Error!", JOptionPane.ERROR_MESSAGE);
+                }
+                else{
+                    //round 1
+                    ArrayList queries = new ArrayList();
+                     //get next trans id
+                    query = "select max(tra_id) from transactions;";
+                    queries.add(query);
+                    query = "select cash_drawer from employees where emp_id="+cBanker_ID+";";
+                    queries.add(query);
+                    ArrayList<ArrayList<String>> response = DB.getArrays(queries,1);
+
+                    int tra_id = Integer.parseInt(response.get(0).get(0));
+                    tra_id++;
+                    balance -= (amount);
+                    float cash_drawer = Float.valueOf(response.get(1).get(0));
+                    cash_drawer -= amount;
+
+                    //round 2
+                    //change balance
+                    ArrayList executes = new ArrayList();
+                    query = "update accounts set balance="+balance+" where account_number="+cAccountNum+";";
+                    executes.add(query);
+
+                    //create new transaction
+                    query = "insert into transactions values("+tra_id+","+cAccountNum+",'withdrawal',"+(amount-(amount*2))+",'"+LocalDateTime.now()+"',"+cBanker_ID+","+balance+","+getTime()+");";
+                    executes.add(query);
+
+                    //update cash drawer amount
+                    query = "update employees set cash_drawer="+cash_drawer+" where emp_id="+cBanker_ID+";";
+                    executes.add(query);
+                    DB.executes(executes);
+
+                    initAccountProfile();
+                }
+            }
+            catch ( Exception e ) {
+                JOptionPane.showMessageDialog(null, e,"Error!", JOptionPane.ERROR_MESSAGE);
+            }
+
+        }
+        else{
+            //if input boxes where not filled
+            JOptionPane.showMessageDialog(null, "Must have cash and check amount","Error!", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void transfer(ArrayList<JTextField> textFieldsList){
+        if (checkFillTextBoxes(textFieldsList))
+        {
+            //Gets data from text boxes
+            String accountNum = textFieldsList.get(0).getText().trim();
+            String amountS = textFieldsList.get(1).getText().trim();
+
+            //make sure they are numbers
+            try {
+                Float amount = round(Float.valueOf(amountS),2);
+
+                //make sure no oevrdraft
+                ArrayList firstQ = new ArrayList();
+                String query = "select balance from accounts where account_number="+cAccountNum+";";
+                firstQ.add(query);
+                query = "select overdraft_limit from accounts where account_number="+cAccountNum+";";
+                firstQ.add(query);
+                query = "select balance from accounts where account_number="+accountNum+";";
+                firstQ.add(query);
+                ArrayList<ArrayList<String>> firstR = DB.getArrays(firstQ,1);
+                Float balance = Float.valueOf(firstR.get(0).get(0));
+                Float limit = Float.valueOf(firstR.get(1).get(0));
+                Float theirBalance = Float.valueOf(firstR.get(2).get(0));
+
+                //no negatives
+                if(amount <= 0){
+                    JOptionPane.showMessageDialog(null, "can't have negative value or 0","Error!", JOptionPane.ERROR_MESSAGE);
+                //no overdraft
+                }else if(balance - amount < (0-limit)){
+                    JOptionPane.showMessageDialog(null, "Withdrawal Exceeds Overdraft Limit","Error!", JOptionPane.ERROR_MESSAGE);
+                }
+                else{
+                    //round 1
+                    ArrayList queries = new ArrayList();
+                     //get next trans id
+                    query = "select max(tra_id) from transactions;";
+                    queries.add(query);
+                    ArrayList<ArrayList<String>> response = DB.getArrays(queries,1);
+
+                    int tra_id = Integer.parseInt(response.get(0).get(0));
+                    tra_id++;
+                    balance -= amount;
+                    theirBalance+=amount;
+
+                    //round 2
+                    //change balances
+                    ArrayList executes = new ArrayList();
+                    query = "update accounts set balance="+balance+" where account_number="+cAccountNum+";";
+                    executes.add(query);
+                    query = "update accounts set balance="+theirBalance+" where account_number="+accountNum+";";
+                    executes.add(query);
+
+                    //create new transactions
+                    query = "insert into transactions values("+tra_id+","+cAccountNum+",'withdrawal',"+(amount-(amount*2))+",'"+LocalDateTime.now()+"',"+cBanker_ID+","+balance+","+getTime()+");";
+                    executes.add(query);
+                    query = "insert into transactions values("+(tra_id+1)+","+accountNum+",'deposit',"+(amount)+",'"+LocalDateTime.now()+"',"+cBanker_ID+","+theirBalance+","+getTime()+");";
+                    executes.add(query);
+
+                    DB.executes(executes);
+
+                    initAccountProfile();
+                }
+            }
+            catch ( Exception e ) {
+                JOptionPane.showMessageDialog(null, e,"Error!", JOptionPane.ERROR_MESSAGE);
+            }
+
+        }
+        else{
+            //if input boxes where not filled
+            JOptionPane.showMessageDialog(null, "Must have cash and check amount","Error!", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void cashCheck(ArrayList<JTextField> textFieldsList){
+        if (checkFillTextBoxes(textFieldsList))
+        {
+            //Gets data from text boxes
+            String amountS = textFieldsList.get(0).getText().trim();
+
+            //make sure they are numbers
+            try {
+                Float amount = round(Float.valueOf(amountS),2);
+
+                //no negatives
+                if(amount <= 0){
+                    JOptionPane.showMessageDialog(null, "can't have negative value or 0","Error!", JOptionPane.ERROR_MESSAGE);
+                }
+                else{
+                    //round 1
+                    ArrayList queries = new ArrayList();
+                     //get next trans id
+                    String query = "select max(tra_id) from transactions;";
+                    queries.add(query);
+                    query = "select balance from accounts where account_number="+cAccountNum+";";
+                    queries.add(query);
+                    query = "select cash_drawer from employees where emp_id="+cBanker_ID+";";
+                    queries.add(query);
+                    ArrayList<ArrayList<String>> response = DB.getArrays(queries,1);
+
+                    int tra_id = Integer.parseInt(response.get(0).get(0));
+                    tra_id++;
+                    float balance = Float.valueOf(response.get(1).get(0));
+                    float cash_drawer = Float.valueOf(response.get(1).get(0));
+                    cash_drawer -= amount;
+
+                    //round 2
+                    ArrayList executes = new ArrayList();
+                    //create new transactions
+                    query = "insert into transactions values("+tra_id+","+cAccountNum+",'withdrawal',"+(amount-(amount*2))+",'"+LocalDateTime.now()+"',"+cBanker_ID+","+(balance - amount)+","+getTime()+");";
+                    executes.add(query);
+                    query = "insert into transactions values("+(tra_id+1)+","+cAccountNum+",'deposit',"+(amount)+",'"+LocalDateTime.now()+"',"+cBanker_ID+","+(balance)+","+getTime()+");";
+                    executes.add(query);
+
+                    //update cash drawer amount
+                    query = "update employees set cash_drawer="+cash_drawer+" where emp_id="+cBanker_ID+";";
+                    executes.add(query);
+                    DB.executes(executes);
+
+                    initAccountProfile();
+                }
+            }
+            catch ( Exception e ) {
+                JOptionPane.showMessageDialog(null, e,"Error!", JOptionPane.ERROR_MESSAGE);
+            }
+
+        }
+        else{
+            //if input boxes where not filled
+            JOptionPane.showMessageDialog(null, "Must have cash and check amount","Error!", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
     //draw teller Balance screen
     public void initBalanceDrawer(){
         clearScreen();
@@ -1100,6 +1524,8 @@ public class JupiterDemo extends javax.swing.JFrame {
         JLabel fiftiesLabel = new javax.swing.JLabel();
         JLabel hundredsLabel = new javax.swing.JLabel();
         JLabel miscLabel = new javax.swing.JLabel();
+        JTextField necessaryAmountBox = new javax.swing.JTextField();
+        JTextField actualAmountBox = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(24, 74, 76));
@@ -1153,7 +1579,7 @@ public class JupiterDemo extends javax.swing.JFrame {
         // PENNIES TEXT BOX
         jTextField1.setBackground(new java.awt.Color(173, 188, 167));
         jTextField1.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
-        jTextField1.setText("Pennies");
+        jTextField1.setText("0");
 
         // QUARTER LABEL
         quarterLabel.setFont(new java.awt.Font("Lucida Grande", 0, 12));
@@ -1162,7 +1588,7 @@ public class JupiterDemo extends javax.swing.JFrame {
         // QUARTER TEXT BOX
         jTextField2.setBackground(new java.awt.Color(173, 188, 167));
         jTextField2.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
-        jTextField2.setText("Quarters");
+        jTextField2.setText("0");
 
         // NICKEL LABEL
         nickelLabel.setFont(new java.awt.Font("Lucida Grande", 0, 12));
@@ -1171,7 +1597,7 @@ public class JupiterDemo extends javax.swing.JFrame {
         // NICKEL TEXT BOX
         jTextField3.setBackground(new java.awt.Color(173, 188, 167));
         jTextField3.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
-        jTextField3.setText("Nickels");
+        jTextField3.setText("0");
 
         // HALF DOLLAR LABEL
         halfDollarLabel.setFont(new java.awt.Font("Lucida Grande", 0, 12));
@@ -1180,7 +1606,7 @@ public class JupiterDemo extends javax.swing.JFrame {
         // HALF DOLLAR TEXT BOX
         jTextField4.setBackground(new java.awt.Color(173, 188, 167));
         jTextField4.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
-        jTextField4.setText("Half Dollars");
+        jTextField4.setText("0");
 
         // DIME LABEL
         dimeLabel.setFont(new java.awt.Font("Lucida Grande", 0, 12));
@@ -1189,7 +1615,7 @@ public class JupiterDemo extends javax.swing.JFrame {
         // DIME TEXT BOX
         jTextField5.setBackground(new java.awt.Color(173, 188, 167));
         jTextField5.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
-        jTextField5.setText("Dimes");
+        jTextField5.setText("0");
 
         // DOLLAR COIN LABEL
         dollarCoinLabel.setFont(new java.awt.Font("Lucida Grande", 0, 12));
@@ -1198,17 +1624,29 @@ public class JupiterDemo extends javax.swing.JFrame {
         // DOLLAR COIN TEXT BOX
         jTextField6.setBackground(new java.awt.Color(173, 188, 167));
         jTextField6.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
-        jTextField6.setText("Dollar Coins");
+        jTextField6.setText("0");
 
         // NECESSARY DRAWER AMOUNT TEXT
         jTextField7.setBackground(new java.awt.Color(173, 188, 167));
-        jTextField7.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
-        jTextField7.setText("Necessary Drawer Amount");
+        jTextField7.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jTextField7.setText("Target Amount:");
+
+        // NECESSARY DRAWER AMOUNT BOX
+        necessaryAmountBox.setBackground(new java.awt.Color(173, 188, 167));
+        necessaryAmountBox.setFont(new java.awt.Font("Lucida Grande", 0, 16));
+        necessaryAmountBox.setText("0");
+        necessaryAmountBox.setEditable(false);
 
         // ACTUAL DRAWER AMOUNT TEXT
         jTextField8.setBackground(new java.awt.Color(173, 188, 167));
-        jTextField8.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
-        jTextField8.setText("Actual Drawer Amount");
+        jTextField8.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jTextField8.setText("Actual Amount:");
+
+        // ACTUAL DRAWER AMOUNT BOX
+        actualAmountBox.setBackground(new java.awt.Color(173, 188, 167));
+        actualAmountBox.setFont(new java.awt.Font("Lucida Grande", 0, 16));
+        actualAmountBox.setText("0");
+        actualAmountBox.setEditable(false);
 
         // ONES LABEL
         onesLabel.setFont(new java.awt.Font("Lucida Grande", 0, 12));
@@ -1217,7 +1655,7 @@ public class JupiterDemo extends javax.swing.JFrame {
         // ONES TEXT BOX
         jTextField9.setBackground(new java.awt.Color(173, 188, 167));
         jTextField9.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
-        jTextField9.setText("Ones");
+        jTextField9.setText("0");
 
         // TWENTIES LABEL
         twentiesLabel.setFont(new java.awt.Font("Lucida Grande", 0, 12));
@@ -1226,7 +1664,7 @@ public class JupiterDemo extends javax.swing.JFrame {
         // TWENTIES TEXT BOX
         jTextField10.setBackground(new java.awt.Color(173, 188, 167));
         jTextField10.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
-        jTextField10.setText("Twenties");
+        jTextField10.setText("0");
 
         // TWOS LABEL
         twosLabel.setFont(new java.awt.Font("Lucida Grande", 0, 12));
@@ -1235,7 +1673,7 @@ public class JupiterDemo extends javax.swing.JFrame {
         // TWOS TEXT BOX
         jTextField11.setBackground(new java.awt.Color(173, 188, 167));
         jTextField11.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
-        jTextField11.setText("Twos");
+        jTextField11.setText("0");
 
         // BILLS SUB TITLE
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
@@ -1248,7 +1686,7 @@ public class JupiterDemo extends javax.swing.JFrame {
         // FIFTIES TEXT BOX
         jTextField12.setBackground(new java.awt.Color(173, 188, 167));
         jTextField12.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
-        jTextField12.setText("Fifties");
+        jTextField12.setText("0");
 
         // FIVES LABEL
         fivesLabel.setFont(new java.awt.Font("Lucida Grande", 0, 12));
@@ -1257,7 +1695,7 @@ public class JupiterDemo extends javax.swing.JFrame {
         // FIVES TEXT BOX
         jTextField13.setBackground(new java.awt.Color(173, 188, 167));
         jTextField13.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
-        jTextField13.setText("Fives");
+        jTextField13.setText("0");
 
         // HUNDREDS LABEL
         hundredsLabel.setFont(new java.awt.Font("Lucida Grande", 0, 12));
@@ -1266,7 +1704,7 @@ public class JupiterDemo extends javax.swing.JFrame {
         // HUNDREDS TEXT BOX
         jTextField14.setBackground(new java.awt.Color(173, 188, 167));
         jTextField14.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
-        jTextField14.setText("Hundreds");
+        jTextField14.setText("0");
 
         // TENS LABEL
         tensLabel.setFont(new java.awt.Font("Lucida Grande", 0, 12));
@@ -1275,7 +1713,7 @@ public class JupiterDemo extends javax.swing.JFrame {
         // TENS TEXT BOX
         jTextField15.setBackground(new java.awt.Color(173, 188, 167));
         jTextField15.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
-        jTextField15.setText("Tens");
+        jTextField15.setText("0");
 
         // MISCELLANEOUS LABEL
         miscLabel.setFont(new java.awt.Font("Lucida Grande", 0, 12));
@@ -1284,7 +1722,7 @@ public class JupiterDemo extends javax.swing.JFrame {
         // MISCELLANEOUS TEXT BOX
         jTextField16.setBackground(new java.awt.Color(173, 188, 167));
         jTextField16.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
-        jTextField16.setText("Misc.");
+        jTextField16.setText("0");
 
         // BALANCED LABEL
         jLabel5.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
@@ -1330,13 +1768,15 @@ public class JupiterDemo extends javax.swing.JFrame {
                                             .addComponent(quarterLabel)
                                             .addComponent(halfDollarLabel)
                                             .addComponent(dollarCoinLabel)
+                                            .addComponent(necessaryAmountBox)
+                                            .addComponent(actualAmountBox)
                                             .addComponent(jTextField4)))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(3, 3, 3))))
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(42, 42, 42)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(onesLabel)
@@ -1424,9 +1864,12 @@ public class JupiterDemo extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(tensLabel)
                     .addComponent(miscLabel))
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(necessaryAmountBox))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(actualAmountBox)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6))
                 .addGap(9, 9, 9))
@@ -1446,6 +1889,7 @@ public class JupiterDemo extends javax.swing.JFrame {
 
         pack();
     }
+
 
     //draw change Pass screen
     public void initChangePassword(){
@@ -1620,8 +2064,7 @@ public class JupiterDemo extends javax.swing.JFrame {
         }
     }
 
-   //draw Reverse Transaction screen
-    public void initReverseTransaction(){
+   public void initReverseTransaction(){
         clearScreen();
         javax.swing.JTextField ASearchText;
         javax.swing.JPanel BGpanel;
@@ -1682,11 +2125,17 @@ public class JupiterDemo extends javax.swing.JFrame {
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("logo.png"))); // NOI18N
 
         ASearchText.setBackground(new java.awt.Color(173, 188, 167));
+        ASearchText.setDocument(new JTextFieldLimit(9));
         ASearchText.setText("Account #");
 
         Searchbtn.setBackground(new java.awt.Color(24, 74, 76));
         Searchbtn.setForeground(new java.awt.Color(173, 188, 167));
         Searchbtn.setText("Search");
+
+        Searchbtn.addActionListener(
+                (ActionEvent e) -> {
+                    searchAccountTransactions(ASearchText.getText().trim(), jTable1);
+                });
 
         Title.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         Title.setText("Reverse Transaction");
@@ -1694,34 +2143,12 @@ public class JupiterDemo extends javax.swing.JFrame {
         jTable1.setAutoCreateRowSorter(true);
         jTable1.setBackground(new java.awt.Color(173, 188, 167));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Account", "Type of Transaction", "Date", "Ammount", "Ending Balance"
-            }
+            new Object [] {
+                "Account", "Type of Transaction", "Date", "Ammount", "End Balance"
+            },0
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.Float.class, java.lang.Float.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
@@ -1741,6 +2168,11 @@ public class JupiterDemo extends javax.swing.JFrame {
         RTransactionBtn.setBackground(new java.awt.Color(24, 74, 76));
         RTransactionBtn.setForeground(new java.awt.Color(173, 188, 167));
         RTransactionBtn.setText("Reverse Selected");
+
+        RTransactionBtn.addActionListener(
+         (ActionEvent e) -> {
+             reverseTransaction(jTable1, VerificationCheck);
+         });
 
         VerificationCheck.setBackground(new java.awt.Color(125, 40, 37));
         VerificationCheck.setForeground(new java.awt.Color(173, 188, 167));
@@ -1813,6 +2245,192 @@ public class JupiterDemo extends javax.swing.JFrame {
         );
 
         pack();
+    }
+
+    //Reverses transaction of selected table row
+    public void reverseTransaction(javax.swing.JTable Table, javax.swing.JCheckBox checkBox)
+    {
+        int rownum = Table.getSelectedRow();//rownum = -1 if not selected
+        if(rownum !=-1 && checkBox.isSelected())
+        {
+            //Gets info from selected row
+            ArrayList<String> rowData = getTableRow(Table,rownum);
+
+            //rowData.get(1) = transaction type
+            String query = "";
+
+            String clientAccount = rowData.get(0);
+            float clientBalance = Float.valueOf(DB.getValue("SELECT balance FROM accounts WHERE account_number='"+clientAccount+"';",1));
+            String tType = rowData.get(1);
+            float ammount = Float.valueOf(rowData.get(3));//ammount to reverse
+
+            if(tType.equals("deposit"))
+            {
+               if(enoughMoney(clientAccount, ammount, clientBalance))
+               {
+                    //if able to reverse
+                   if(reverseDeposit(clientAccount, clientBalance, ammount))
+                   {
+                       //update transaction table
+                       searchAccountTransactions(clientAccount, Table);
+                       JOptionPane.showMessageDialog(null, "Transaction reversed!","Success", JOptionPane.PLAIN_MESSAGE);
+                   }
+                   else
+                   {
+                       JOptionPane.showMessageDialog(null, "Could not reverse, server error!","Error!", JOptionPane.ERROR_MESSAGE);
+                   }
+               }
+               else//not enough money
+               {
+                   JOptionPane.showMessageDialog(null, "Insuficient funds\nCurrent Balance: "+clientBalance,"Error!", JOptionPane.WARNING_MESSAGE);
+               }
+            }
+            else//withdraw
+            {
+                 //if able to reverse
+               if(reverseWithdrawal(clientAccount, clientBalance, ammount))
+               {
+                   //update transaction table
+                   searchAccountTransactions(clientAccount, Table);
+                   JOptionPane.showMessageDialog(null, "Transaction reversed!","Error!", JOptionPane.PLAIN_MESSAGE);
+               }
+               else
+               {
+                   JOptionPane.showMessageDialog(null, "Could not reverse, server error!","Error!", JOptionPane.ERROR_MESSAGE);
+               }
+            }
+            checkBox.setSelected(false);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Please select a transaction and check the validation box!","Error!", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    //Gets data from table at selected row
+    public ArrayList<String> getTableRow(javax.swing.JTable Table, int rowNum)
+    {
+        ArrayList<String> rowData = new ArrayList();
+        String value;
+        for (int colNum = 0; colNum < Table.getColumnCount(); colNum++)
+        {
+            value = (String)Table.getValueAt(rowNum, colNum);
+            rowData.add(value.trim());
+        }
+        return rowData;
+    }
+
+    //Searches for a give account transactions and populates the table
+    public void searchAccountTransactions(String accountNumber,  javax.swing.JTable Table)
+    {
+//        String accountNumber = accountTextBox.getText().trim();
+        //if box was filled and has only 9 digits execute search
+        if (accountNumber.length() == 9 && onlyDigits(accountNumber))
+        {
+            String query = "SELECT account_number, trans_type, date, amount, balance  FROM transactions WHERE account_number='"+accountNumber+"'ORDER BY date DESC, time DESC LIMIT 50;";
+            ArrayList<ArrayList<String>> data;
+            data = DB.getRows(query);
+            //Not enough data returned
+            if (data == null || data.isEmpty())
+            {
+                JOptionPane.showMessageDialog(null, "Info for account not found!","Error!", JOptionPane.ERROR_MESSAGE);
+            }
+            else
+            {
+                fillTable(Table, data);
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Must provide a valid account number","Error!", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    //Clears all rows of JTable given as an argument
+    public void clearTable(javax.swing.JTable Table)
+    {
+        for(int i = Table.getModel().getRowCount() - 1; i >= 0; i--)
+        {
+            ((javax.swing.table.DefaultTableModel)Table.getModel()).removeRow(i);
+        }
+    }
+
+    //Fills table must make sure that row data has columns to populate in exact order
+    public void fillTable(javax.swing.JTable Table, ArrayList<ArrayList<String>> data)
+    {
+        clearTable(Table);
+
+        //Create all rows of table based on info in database
+        for (int i = 0; i<data.size(); i++)
+        {
+            //Create row object by extracting row array from data
+            Object row[] = data.get(i).toArray();
+            ((javax.swing.table.DefaultTableModel)Table.getModel()).addRow(row);
+        }
+    }
+
+    //runs a reverse deposit query into given account
+    public boolean reverseDeposit(String clientAccount, Float clientBalance, Float ammount)
+    {
+        ArrayList<String> queries = new ArrayList();
+
+        //Calculate new balances for both accounts
+        clientBalance-=ammount;//loses money
+
+        //Create reverse transaction query
+        queries.add("INSERT INTO  transactions (account_number, trans_type, amount, date, emp_id, balance, time) VALUES "+
+                    "('"+ clientAccount +"', 'withdrawal',"+(ammount*-1)+", NOW(),"+ cBanker_ID +","+ clientBalance + ", CURTIME());");
+        //Create update balance query
+        queries.add("UPDATE accounts SET balance="+clientBalance+" WHERE account_number='"+clientAccount+"';");
+
+        //If successful execution
+        if(DB.executes(queries))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+    }
+
+    //runs a reverse deposit query into given account
+    public boolean reverseWithdrawal(String clientAccount, Float clientBalance, Float ammount)
+    {
+        ArrayList<String> queries = new ArrayList();
+
+        //Calculate new balances for both accounts
+        clientBalance+=(ammount*-1);//gains money, because it becomes deposit
+
+        //Create reverse transaction query - deposit
+        queries.add("INSERT INTO  transactions (account_number, trans_type, amount, date, emp_id, balance, time) VALUES "+
+                    "('"+ clientAccount +"', 'deposit',"+(ammount*-1)+", NOW(),"+ cBanker_ID +","+ clientBalance + ", CURTIME());");
+        //Create update balance query
+        queries.add("UPDATE accounts SET balance="+clientBalance+" WHERE account_number='"+clientAccount+"';");
+
+        //If successful execution
+        if(DB.executes(queries))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+    }
+
+    //Finds if user has enough money to do a withdrawal, //amount must be positive
+    public boolean enoughMoney(String clientAccount, Float ammount, Float balance)
+    {
+        float overdraft = 0;
+        String query = "SELECT overdraft_limit FROM accounts WHERE account_number='"+clientAccount+"';";
+        overdraft=Float.valueOf(DB.getValue(query,1));
+        //if they have enough money
+        if(balance+overdraft-ammount>=0)
+        {
+            return true;
+        }
+        return false;
     }
 
     //draw add banker screen
@@ -2447,6 +3065,23 @@ public class JupiterDemo extends javax.swing.JFrame {
         getContentPane().removeAll();
         getContentPane().revalidate();
         getContentPane().repaint();
+    }
+
+    public static float round(float d, int decimalPlace) {
+        BigDecimal bd = new BigDecimal(Float.toString(d));
+        bd = bd.setScale(decimalPlace, BigDecimal.ROUND_HALF_UP);
+        return bd.floatValue();
+    }
+
+    public String getTime(){
+        Calendar calendar = Calendar.getInstance();
+        int mins = calendar.get(Calendar.MINUTE);
+        int hours = calendar.get(Calendar.HOUR_OF_DAY);
+        int secs = calendar.get(Calendar.SECOND);
+        secs+=hours*60*60;
+        secs+=mins*60;
+        String time = ""+secs;
+        return time;
     }
 
     //Don't Touch
